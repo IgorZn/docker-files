@@ -75,7 +75,7 @@ RUN alternatives --install /usr/bin/java java /usr/lib/jvm/$java_dir/jre/bin/jav
 RUN alternatives --install /usr/bin/jar jar /usr/lib/jvm/$java_dir/jre/bin/jar 3
 RUN alternatives --install /usr/bin/javac javac /usr/lib/jvm/$java_dir/jre/bin/javac 4
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-2.el7_6.x86_64/jre/bin/java
+ENV JAVA_HOME /usr/lib/jvm/$java_dir/jre/bin/java
 RUN ls -la $JAVA_HOME
 RUN java -version
 
