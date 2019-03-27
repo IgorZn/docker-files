@@ -70,9 +70,10 @@ RUN yum -y install wget
 RUN yum -y install java-1.8.0-openjdk
 RUN yum -y install java-1.8.0-openjdk-devel
 
-RUN alternatives --install /usr/bin/java java /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-2.el7_6.x86_64/jre/bin/java 2
-RUN alternatives --install /usr/bin/jar jar /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-2.el7_6.x86_64/jre/bin/jar 3
-RUN alternatives --install /usr/bin/javac javac /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-2.el7_6.x86_64/jre/bin/javac 4
+RUN java_dir=$(find /usr/lib/jvm -name java-1.8.0-openjdk-1.8.* -type d)
+RUN alternatives --install /usr/bin/java java /usr/lib/jvm/$java_dir/jre/bin/java 2
+RUN alternatives --install /usr/bin/jar jar /usr/lib/jvm/$java_dir/jre/bin/jar 3
+RUN alternatives --install /usr/bin/javac javac /usr/lib/jvm/$java_dir/jre/bin/javac 4
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-2.el7_6.x86_64/jre/bin/java
 RUN ls -la $JAVA_HOME
